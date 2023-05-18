@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+   db:
+      container_name: users.parking.db
+      image: docker.io/mysql:5.7
+      environment:
+         - MYSQL_ROOT_PASSWORD=root
+         - MYSQL_DATABASE=acl_parking
+      volumes:
+         - './db:/var/lib/mysql'
+      ports:
+         - 3307:3306
+   app:
+      build: 
+         context: docker-compose/node
+         dockerfile: Dockerfile
+      image: node:19-expressjs
+      depends_on:
+         - db
+      container_name: auth.parking.app
+      ports:
+         - 3000:3000
+      volumes:
+         - './app:/var/www/html/app'
+      working_dir: /var/www/html/app
