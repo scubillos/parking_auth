@@ -34,7 +34,7 @@
 - Docker
 
 ## Postman
-La colección de postman con los servicios GET y POST es el archivo ***reto.postman_collection.json***.
+La colección de postman con los servicios GET y POST es el archivo ***auth.postman_collection.json***.
 
 En esta colección se encuentran:
 - **GET** Petición para buscar usuario.

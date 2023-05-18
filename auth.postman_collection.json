@@ -1,60 +1,137 @@
 {
 	"info": {
-		"_postman_id": "9cbaa468-20c6-4d2f-b2a9-335506180e00",
+		"_postman_id": "9bb84a9e-7de4-4c56-b7fa-07aa74f73ab7",
 		"name": "auth_parking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "14847339"
 	},
 	"item": [
 		{
-			"name": "Crear Usuario",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"nombre\": \"{{$randomFirstName}}\",\n    \"apellido\": \"{{$randomLastName}}\",\n    \"fecha\": \"{{$randomDateRecent}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Users",
+			"item": [
+				{
+					"name": "Find User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/user",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"user"
-					]
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"name\": \"{{$randomFirstName}}\",\n    \"surname\": \"{{$randomLastName}}\",\n    \"birth_date\": \"{{$randomDateRecent}}\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Buscar Usuario",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/user/:id",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"user",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "2"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Adolphus24@hotmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJBZG9scGh1czI0QGhvdG1haWwuY29tIiwiaWF0IjoxNjg0MzgzNzY1LCJleHAiOjE2ODQzODczNjV9.uaLw5QUhqlMPrZ1lKu8YdSXZ0o_X3N5-bcK6K8daUTY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Adolphus24@hotmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/verify",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
